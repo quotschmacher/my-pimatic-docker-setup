@@ -12,6 +12,8 @@ compose_output="$BASEFOLDER/compose/$compose_output_filename"
 
 set -x
 
+sudo gpasswd -a "$USER" dialout
+
 mkdir "$BASEFOLDER/compose"
 
 #eval "echo \"$(cat $compose_input)\"" > $compose_output
