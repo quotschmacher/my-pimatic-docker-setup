@@ -19,6 +19,7 @@ RUN apt-get install -y nodejs
 RUN apt-get install -y build-essential git
 RUN mkdir /home/pimatic-app
 RUN /usr/bin/env node --version
+RUN npm install sqlite3 --unsafe-perm
 RUN cd /home && npm install pimatic@0.9.50 --prefix pimatic-app --production
 
 
