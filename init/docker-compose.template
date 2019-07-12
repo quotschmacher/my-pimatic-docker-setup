@@ -3,8 +3,9 @@ services:
   deconz:
     image: marthoc/deconz:latest
     container_name: deconz
-    network_mode: host
     restart: always
+    expose:
+      - "8080"
     volumes:
       - {BASEFOLDER}/deconz:/root/.local/share/dresden-elektronik/deCONZ
     #devices:
@@ -24,6 +25,9 @@ services:
     image: eclipse-mosquitto:latest
     container_name: mosquitto
     restart: always
+    expose:
+      - "1883"
+      - "9001"
     ports:
       - "1883:1883"
       - "9001:9001"
@@ -33,3 +37,12 @@ services:
       - {BASEFOLDER}/mqtt/log:/mosquitto/log
     environment:
       - TZ=Europe/Berlin
+  pimatic:
+    image: pimatic_0.9.50
+    container_name: pimatic
+    network_mode: host
+    expose:
+      - "80"
+    ports:
+      - "80:80"
+    tty: true
