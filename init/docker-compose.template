@@ -1,0 +1,35 @@
+version: "2"
+services:
+  deconz:
+    image: marthoc/deconz:latest
+    container_name: deconz
+    network_mode: host
+    restart: always
+    volumes:
+      - {BASEFOLDER}/deconz:/root/.local/share/dresden-elektronik/deCONZ
+    #devices:
+    #  - /dev/ttyUSB0
+    environment:
+      - DECONZ_WEB_PORT=8080
+      - DECONZ_WS_PORT=443
+      - DEBUG_INFO=1
+      - DEBUG_APS=0
+      - DEBUG_ZCL=0
+      - DEBUG_ZDP=0
+      - DEBUG_OTAU=0
+      - TZ=Europe/Berlin
+      - DECONZ_VNC_PORT=5900
+      - DECONZ_VNC_MODE=0
+  mqtt:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto
+    restart: always
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - {BASEFOLDER}/mqtt/config:/mosquitto/config
+      - {BASEFOLDER}/mqtt/data:/mosquitto/data
+      - {BASEFOLDER}/mqtt/log:/mosquitto/log
+    environment:
+      - TZ=Europe/Berlin
