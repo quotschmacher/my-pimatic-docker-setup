@@ -21,6 +21,7 @@ mkdir "$BASEFOLDER/compose"
 sed "s|{BASEFOLDER}|$BASEFOLDER|g" "$compose_input" > "$compose_output"
 
 mkdir "$BASEFOLDER/deconz"
+mkdir "$BASEFOLDER/pimatic"
 mkdir "$BASEFOLDER/mqtt"
 mkdir "$BASEFOLDER/mqtt/config"
 mkdir "$BASEFOLDER/mqtt/data"
@@ -30,6 +31,7 @@ chmod -R 777 "$BASEFOLDER/mqtt/data"
 chmod -R 777 "$BASEFOLDER/mqtt/log"
 
 cp "$SCRIPTPATH/mosquitto.conf" "$BASEFOLDER/mqtt/config/mosquitto.conf"
+cp "$SCRIPTPATH/config_default.json" "$BASEFOLDER/pimatic/config.json"
 
 chmod -R 777 "$BASEFOLDER/mqtt/config/mosquitto.conf"
 
