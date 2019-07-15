@@ -43,7 +43,11 @@ services:
   pimatic:
     image: pimatic_0.9.50
     container_name: pimatic
+    restart: always
     network_mode: host
     ports:
       - "80:80"
+    volumes:
+      - {BASEFOLDER}/pimatic:/data
     tty: true
+    command: "ln -fs /data/pimatic-database.sqlite /home/pimatic-app/pimatic-database.sqlite && ln -fs /data/config.json /home/pimatic-app/config.json && service pimatic start && /bin/bash"
