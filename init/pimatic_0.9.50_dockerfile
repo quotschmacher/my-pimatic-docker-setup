@@ -21,9 +21,15 @@ RUN /usr/bin/env node --version
 RUN npm install sqlite3 --unsafe-perm
 RUN cd /home && npm install pimatic@0.9.50 --prefix pimatic-app --production
 
-
 ####### Instal globally #######
 RUN cd /home/pimatic-app/node_modules/pimatic && npm link
+
+####### preinstall packages #######
+RUN cd /home/pimatic-app/node_modules && npm install pimatic-cron@0.8.8
+RUN cd /home/pimatic-app/node_modules && npm install pimatic-mobile-frontend@0.9.15
+#RUN cd /home/pimatic-app/node_modules && npm install pimatic-raspbee@0.1.0
+#RUN cd /home/pimatic-app/ && npm install pimatic-mqtt@0.9.7
+#RUN cd /home/pimatic-app/ && npm install pimatic-jointspace@0.1.0
 
 ####### init storage #######
 RUN mkdir /data
