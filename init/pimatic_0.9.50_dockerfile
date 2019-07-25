@@ -59,6 +59,6 @@ VOLUME ["/data"]
 VOLUME ["/home/pimatic-app"]
 
 #ENTRYPOINT service pimatic start
-CMD ln -fs /data/pimatic-database.sqlite /home/pimatic-app/pimatic-database.sqlite && ln -fs /data/config.json /home/pimatic-app/config.json && service pimatic start && /bin/bash
+CMD ln -fs /data/pimatic-database.sqlite /home/pimatic-app/pimatic-database.sqlite && ln -fs /data/config.json /home/pimatic-app/config.json && echo $TZ | tee /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata && service pimatic start && /bin/bash
 #ENTRYPOINT service pimatic start && /bin/bash
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
