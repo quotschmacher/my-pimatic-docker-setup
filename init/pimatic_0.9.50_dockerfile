@@ -4,6 +4,8 @@ FROM debian
 # Author
 LABEL Maintainer="quotschmacher" version="0.9.50"
 
+ENV TZ="Europe/Berlin"
+
 ####### Base installation of NodeJS #######
 # Install NodeJS v10.x
 RUN apt-get update
